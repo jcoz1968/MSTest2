@@ -1,4 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -36,15 +38,23 @@ namespace GameEngine.Tests
             Assert.AreEqual(100, sut.Health);
         }
 
-        [TestMethod]
+        [DataTestMethod]
+        [DynamicData(nameof(ExternalHealthDamageTestData.TestData), typeof(ExternalHealthDamageTestData))]
+        //[DynamicData(nameof(DynamicData.GetDamages), typeof(DynamicData), DynamicDataSourceType.Method)]
+        //[DynamicData(nameof(Damages))]
+        //[DataRow(1, 99)]
+        //[DataRow(0, 100)]
+        //[DataRow(100, 1)]
+        //[DataRow(101, 1)]
+        //[DataRow(50, 50)]
         [TestCategory("Player Health")]
-        public void TakeDamage()
+        public void TakeDamage(int damage, int expectedHealth)
         {
             var sut = new PlayerCharacter();
 
-            sut.TakeDamage(1);
+            sut.TakeDamage(damage);
 
-            Assert.AreEqual(99, sut.Health);
+            Assert.AreEqual(expectedHealth, sut.Health);
         }
 
         [TestMethod]

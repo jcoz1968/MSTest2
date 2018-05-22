@@ -12,4 +12,9 @@
   <ItemGroup>
     <ProjectReference Include="..\GameEngine\GameEngine.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Damage.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
